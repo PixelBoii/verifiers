@@ -723,7 +723,7 @@ class GRPOTrainer(Trainer):
         # Check if background batch generation is complete on main process
         # and broadcast the state to all processes
         is_generating = False
-        if self.accelerator.is_main_process:
+        if self.accelerator.is_main_process and self._async_started:
             is_generating = self.async_generator.is_generating
 
         # Broadcast generation state from main process to all processes

@@ -328,12 +328,6 @@ class AsyncBatchGenerator:
         return results
 
     def evaluate(self, num_samples: int = -1) -> GenerateOutputs:
-        """
-        Run evaluation synchronously by creating a separate thread with its own event loop.
-        """
-        if not self.started:
-            raise RuntimeError("AsyncBatchGenerator not started")
-
         # Run evaluation in a separate thread to avoid event loop conflicts
         result_container = []
         exception_container = []
